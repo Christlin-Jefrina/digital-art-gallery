@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup - Digital Art Gallery</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Digital Art Gallery</h1>
+        <h2>Login / Signup</h2>
+        <div class="form-section">
+            <h3>Log In</h3>
+            <form id="loginForm">
+                <input type="text" id="loginUsername" placeholder="Username" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+
+        <div class="form-section">
+            <h3>Sign Up</h3>
+            <form id="signupForm">
+                <input type="text" id="signupUsername" placeholder="Username" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <br>
+            <center>
+            <a href="home.html">Back to home</a>
+        </center>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Handle signup form submission
+            $('#signupForm').submit(function(event) {
+                event.preventDefault();
+                const username = $('#signupUsername').val();
+                const password = $('#signupPassword').val();
+
+                $.ajax({
+                    url: '/api/signup',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ username, password }),
+                    success: function(response) {
+                        alert('Signup successful! You can now log in.');
+                    },
+                    error: function(error) {
+                        alert('Error signing up: ' + error.responseText);
+                    }
+                });
+            });
+
+            // Handle login form submission
+            $('#loginForm').submit(function(event) {
+                event.preventDefault();
+                const username = $('#loginUsername').val();
+                const password = $('#loginPassword').val();
+
+                $.ajax({
+                    url: '/api/login',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ username, password }),
+                    success: function(response) {
+                        alert('Login successful!');
+                        window.location.href = '/'; // Redirect to your upload page
+                    },
+                    error: function(error) {
+                        alert('Error logging in: ' + error.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

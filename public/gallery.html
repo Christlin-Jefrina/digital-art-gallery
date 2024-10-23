@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Digital Art Gallery</title>
+    <link rel="stylesheet" href="css/gallery.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="gallery-container">
+        <a href="home.html">Back to home</a>
+        <h1>Art Gallery</h1>
+        <div id="artworks" class="artworks"></div>
+        
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            // Load artworks from the database
+            loadArtworks();
+
+            function loadArtworks() {
+                $.ajax({
+                    url: '/api/artworks', // Endpoint to get artworks
+                    method: 'GET',
+                    success: function(artworks) {
+                        artworks.forEach(artwork => {
+                            $('#artworks').append(`
+                                <div class="artwork" data-id="${artwork._id}">
+                                    <img src="${artwork.imageURL}" alt="${artwork.title}">
+                                    <h3>${artwork.title}</h3>
+                                    <p>by ${artwork.artist}</p>
+                                    <p>${artwork.description}</p>
+                                    <p><strong>Likes:</strong> <span class="like-count">${artwork.likes}</span></p>
+                                    <button class="like-button"><span class="heart-icon"> ❤️</span> Like</button>
+                                    
+                                    <div class="rating">
+                                        <label for="rating">Rate:</label>
+                                        <div class="rating-stars">
+                                            <span class="star" data-value="5">★</span>
+                                            <span class="star" data-value="4">★</span>
+                                            <span class="star" data-value="3">★</span>
+                                            <span class="star" data-value="2">★</span>
+                                            <span class="star" data-value="1">★</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `);
+                        });
+
+                        // Event listeners for like, comment, and rate buttons
+                        $('.like-button').click(function() {
+                            const artworkId = $(this).closest('.artwork').data('id');
+                            likeArtwork(artworkId);
+                        });
+
+                        $('.star').click(function() {
+                            const artworkId = $(this).closest('.artwork').data('id');
+                            const rating = $(this).data('value');
+                            rateArtwork(artworkId, rating);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error loading artworks:', error);
+                    }
+                });
+            }
+
+            function likeArtwork(artworkId) {
+                $.ajax({
+                    url: `/api/artworks/${artworkId}/like`,
+                    method: 'POST',
+                    success: function() {
+                        const likeCount = $(`.artwork[data-id="${artworkId}"] .like-count`);
+                        likeCount.text(parseInt(likeCount.text()) + 1);
+                    },
+                    error: function(error) {
+                        console.error('Error liking artwork:', error);
+                    }
+                });
+            }
+
+
+            function rateArtwork(artworkId, rating) {
+                $.ajax({
+                    url: `/api/artworks/${artworkId}/rate`,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ rating }),
+                    success: function() {
+                        alert('Thank you for your rating!');
+                    },
+                    error: function(error) {
+                        console.error('Error rating artwork:', error);
+                    }
+                });
+            }
+        });
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,118 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const app = express();
+const artworkRoutes = require('../routes/artworks');
+
+mongoose.connect('mongodb://localhost/digitalartgallery', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use('/api', artworkRoutes);
+
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
+
+
+// Get all artworks
+router.get('/artworks', async (req, res) => {
+  const artworks = await Artwork.find();
+  res.json(artworks);
+});
+
+
+
+.artworks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.artwork {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.artwork img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.like-button {
+  background: #ff4757;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.like-button:hover {
+  background: #ff6b81;
+}
+
+.comments {
+  margin: 15px 0;
+}
+
+.comment-input {
+  width: calc(100% - 100px);
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.comment-button {
+  padding: 8px 15px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.comment-button:hover {
+  background: #0056b3;
+}
+
+.rating {
+  margin-top: 10px;
+}
+
+.rating-stars {
+  cursor: pointer;
+}
+
+.star {
+  font-size: 24px;
+  color: #ffd700; /* Gold color for stars */
+  transition: color 0.2s; /* Smooth transition for hover effect */
+}
+
+.star:hover,
+.star:hover ~ .star {
+  color: #ffcc00; /* Lighter gold on hover */
+}
+
+/* This part handles the effect when hovering over stars */
+.star:hover,
+.star:hover ~ .star {
+  color: #ffcc00; /* Change color of hovered star and those to the left */
+}
+
+.star:not(:hover) {
+  color: #000000; /* Keep non-hovered stars at the default color */
+}
+
+.rating-stars .star:hover {
+  color: #ffcc00; /* Change color on hover */
+}

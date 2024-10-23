@@ -1,0 +1,82 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, form, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background styles */
+body {
+    background-image: url("https://cdn1.epicgames.com/ue/product/Screenshot/2-1920x1080-c79a4db4947905ff2adb98480d4d7dc1.jpg?resize=1&w=1920"); /* Gradient background */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Container styles */
+.auth-container {
+    width: 90%;
+    max-width: 400px;
+    margin: 5% auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Heading styles */
+h1 {
+    color: #000000; /* A vibrant color for the title */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: #000000; /* Color for the main heading */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #000000; /* Color for section headings */
+    font-size: 1.2rem;
+    margin: 15px 0;
+}
+
+/* Form section styles */
+.form-section {
+    margin: 20px 0;
+}
+
+/* Input field styles */
+input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #000000; /* Border color */
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Button styles */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #000000; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #000000; /* Change color on hover */
+}
+
+/* Add some spacing */
+@media (max-width: 600px) {
+    .auth-container {
+        width: 95%;
+    }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="digitalArtApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Art Gallery</title>
+  <link rel="stylesheet" href="css/upload.css">
+</head>
+<body ng-controller="ArtworkController">
+
+  <header>
+    <h1>Digital Art Gallery</h1>
+    <button id="addArtworkBtn">Add Artwork</button>
+    <br>
+    <a href="home.html">Back to home</a>
+    
+  </header>
+
+  <section id="gallery">
+    <div ng-repeat="artwork in artworks" class="art-item">
+      <h3>{{ artwork.title }}</h3>
+      <p><strong>Artist:</strong> {{ artwork.artist }}</p>
+      <p>{{ artwork.description }}</p>
+      <img ng-src="{{ artwork.imageURL }}" alt="{{ artwork.title }}">
+      <button ng-click="deleteArtwork(artwork._id)">Delete</button>
+    </div>
+  </section>
+
+  <!-- Add Artwork Modal -->
+  <div id="artworkModal" style="display:none;">
+    <form id="addArtworkForm" enctype="multipart/form-data">
+      <input type="text" placeholder="Title" id="title" required>
+      <input type="text" placeholder="Artist" id="artist" required>
+      <textarea placeholder="Description" id="description"></textarea>
+      <input type="text" placeholder="Image URL" id="imageURL" required>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    // Redirect to the home page
+    $('#homeBtn').click(function() {
+        window.location.href = 'home.html'; // Adjust as necessary
+    });
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

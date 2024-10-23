@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html ng-app="artGalleryApp">
+<head>
+    <title>Digital Art Gallery</title>
+    <!-- Link to the CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css"> <!-- Correctly linked CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- AngularJS and jQuery libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Link to the app.js and ui.js -->
+    <script src="js/app.js"></script>  <!-- Correctly linked AngularJS app -->
+    <script src="js/ui.js"></script>   <!-- Correctly linked jQuery (optional) -->
+
+    <style>
+
+        
+    /* Reset box-sizing */
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+        text-align: center;
+    }
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+    nav ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    nav ul li a:hover {
+        color: #FFD700;
+    }
+    .hero {
+        background-image: url('WTP1.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        text-shadow: 2px 2px 8px #000;
+        text-align: center;
+    }
+    .hero h1 {
+        font-size: 50px;
+    }
+    .gallery-section {
+        padding: 20px;
+        text-align: center;
+    }
+    .gallery-section h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .gallery {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .gallery img {
+        width: 100%;
+        max-width: 300px; /* Limit max width */
+        height: auto; /* Maintain aspect ratio */
+        object-fit: cover;
+        border-radius: 8px;
+        margin: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .gallery img:hover {
+        transform: scale(1.1);
+    }
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 36px;
+        }
+        nav ul li {
+            display: block; /* Stack nav items */
+            margin: 5px 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero h1 {
+            font-size: 28px;
+        }
+        .gallery img {
+            width: 100%; /* Full width on small screens */
+            margin: 5px 0; /* Reduce margin */
+        }
+    }
+
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+        .hero {
+            background-image: url('WTP1.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-shadow: 2px 2px 8px #000;
+        }
+        .hero h1 {
+            font-size: 50px;
+        }
+        .gallery-section {
+            padding: 20px;
+            text-align: center;
+        }
+        .gallery-section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .gallery {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="upload.html">Upload Artwork</a></li>
+                <li><a href="login.html">Login/Sign up</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Welcome to the Digital Art Gallery</h1>
+    </div>
+
+    <div class="gallery-section">
+        <h2>Featured Artworks</h2>
+        <div class="gallery">
+           <a href="/gallery.html"> <img src="https://c4.wallpaperflare.com/wallpaper/966/951/802/digital-digital-art-artwork-illustration-fantasy-art-hd-wallpaper-preview.jpg" alt="Art 1"> </a>
+           <a href="/gallery.html"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZK84e_UBmJSEVeSWos7AIjZwh0qx4QrKp4g&s" alt="Art 2"></a> 
+           <a href="/gallery.html"> <img src="https://images-ng.pixai.art/images/orig/71e270a0-dca2-453e-9508-1c08a095ce49" alt="Art 3"></a> 
+           <a href="/gallery.html"> <img src="https://masterpiecer-images.s3.yandex.net/5f7998535bc511ee895f363fac71b015:upscaled" alt="Art 4"></a> 
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Digital Art Gallery. All rights reserved.</p>
+    </footer>
+</body>
+</html>
